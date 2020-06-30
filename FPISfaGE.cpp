@@ -17,40 +17,40 @@ public:
     vector<vector<int>> findSolution(CustomFunction& customfunction, int z) {
         vector<vector<int>> solution_pairs;
         vector<int> pair(2,0);
-        int x=1;
+        int x = 1;
         int yleft, yright, ymid;
-        while(customfunction.f(x,1)<=z){
-            pair[0]=x;            
-            if(customfunction.f(x,1)<=z && customfunction.f(x,upperbound)>= z){           
-                yleft=1;
-                yright=upperbound;
-                while(yright > yleft){
-                    if(customfunction.f(x,yleft)==z){
-                        pair[1]=yleft;
+        while (customfunction.f(x,1) <= z){
+            pair[0] = x;            
+            if (customfunction.f(x,1) <= z && customfunction.f(x,upperbound) >= z){           
+                yleft = 1;
+                yright = upperbound;
+                while ( yright > yleft){
+                    if (customfunction.f(x,yleft) == z){
+                        pair[1] = yleft;
                         solution_pairs.emplace_back(pair);
                         break;
                     }
-                    else if(customfunction.f(x,yright)==z){
-                        pair[1]=yright;
+                    else if (customfunction.f(x,yright) == z){
+                        pair[1] = yright;
                         solution_pairs.emplace_back(pair);
                         break;
                     }
-                    ymid=yleft+(yright-yleft)/2;
-                    if(customfunction.f(x,ymid)==z){  
-                        pair[1]=ymid;
+                    ymid = yleft + (yright - yleft) /2;
+                    if (customfunction.f(x,ymid) == z){  
+                        pair[1] = ymid;
                         solution_pairs.emplace_back(pair);
                         break;
                     }
-                    else if(customfunction.f(x,ymid)<z){
-                        yleft=ymid+1;                    
+                    else if (customfunction.f(x,ymid) < z){
+                        yleft = ymid + 1;                    
                     }
                     else{
-                        yright=ymid;
+                        yright = ymid;
                     }
                 }
                 
             }            
-            x++;
+            ++;
         }
         return solution_pairs;
     }
