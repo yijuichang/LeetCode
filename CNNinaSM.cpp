@@ -33,4 +33,35 @@ public:
 Runtime: 40 ms, faster than 28.26% of C++ online submissions for Count Negative Numbers in a Sorted Matrix.
 Memory Usage: 12.9 MB, less than 5.08% of C++ online submissions for Count Negative Numbers in a Sorted Matrix.
 
+
+Should not use recursive
+
+
+ int binarysearch(vector<int> nums)
+    {
+        int low=0;
+        int high=nums.size()-1;
+        
+        while(low<high)
+        {
+            int mid=low+(high-low)/2;
+            if(nums[mid]<0)
+                high=mid;
+            else
+                low=mid+1;
+        }
+        
+        if(nums[low]<0)
+            return nums.size()-low;
+        else
+            return 0;
+    }
+
+
+
+Runtime: 32 ms, faster than 91.10% of C++ online submissions for Count Negative Numbers in a Sorted Matrix.
+Memory Usage: 11.1 MB, less than 10.63% of C++ online submissions for Count Negative Numbers in a Sorted Matrix.
+
+
+
 */
