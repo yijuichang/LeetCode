@@ -13,28 +13,36 @@
 
 class Solution {
 public:
-    const int upperbound=1000;
+    // What is constexpr? What are the differences between constexpr and static const?
+    const int upperbound = 1000;
     vector<vector<int>> findSolution(CustomFunction& customfunction, int z) {
         vector<vector<int>> solution_pairs;
+        // What are vector.reserve() and vector.shrink_to_fit()?
+        
+        // Why not using pair?
         vector<int> pair(2,0);
         int x = 1;
         int yleft, yright, ymid;
-        while (customfunction.f(x,1) <= z){
+        while (customfunction.f(x,1) <= z) {
             pair[0] = x;            
             if (customfunction.f(x,1) <= z && customfunction.f(x,upperbound) >= z){           
                 yleft = 1;
                 yright = upperbound;
                 while ( yright > yleft){
-                    if (customfunction.f(x,yleft) == z){
+                    // Need to add comment
+                    if (customfunction.f(x, yleft) == z){
                         pair[1] = yleft;
                         solution_pairs.emplace_back(pair);
+                        // What are the differences between push_back and emplace_back?
                         break;
                     }
-                    else if (customfunction.f(x,yright) == z){
+                    else if (customfunction.f(x, yright) == z){
                         pair[1] = yright;
                         solution_pairs.emplace_back(pair);
                         break;
                     }
+                    
+                    // Need to add comment
                     ymid = yleft + (yright - yleft) /2;
                     if (customfunction.f(x,ymid) == z){  
                         pair[1] = ymid;
@@ -44,13 +52,12 @@ public:
                     else if (customfunction.f(x,ymid) < z){
                         yleft = ymid + 1;                    
                     }
-                    else{
+                    else {
                         yright = ymid;
                     }
-                }
-                
-            }            
-            ++;
+                }               
+            }         
+            ++; //???
         }
         return solution_pairs;
     }
