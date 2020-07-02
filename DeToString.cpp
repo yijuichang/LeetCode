@@ -7,23 +7,23 @@ public:
         //ASCII('0')=48, ASCII('a')=97, ASCII('i')=105
         for (auto it = s.cbegin()+2; it < s.cend(); ++it){
             if (*it != '#') {
-                result.push_back(48 + *(it - 2));
+                result.push_back(*(it - 2) - '1' + 'a');
             }
             else{
-                result.push_back((*(it - 2) - 48) * 10 + 96 + *(it - 1) - 48);
+                result.push_back((*(it - 2) - '0') * 10 + 'a' - 1 + *(it - 1) - '0' );
                 ++it;
                 ++it;
             }
         }
         
         if(s.back() != '#') {
-            if(s.at(s.size() - 2) != '#') result.push_back(s.at(s.size() - 2) + 48);
-            result.push_back(s.at(s.size() - 1) + 48);
+            if(s.at(s.size() - 2) != '#') result.push_back(s.at(s.size() - 2) + '0');
+            result.push_back(s.at(s.size() - 1) + '0');
         }
         return result;
     }
 };
 /*
-Runtime: 4 ms, faster than 51.90% of C++ online submissions for Decrypt String from Alphabet to Integer Mapping.
-Memory Usage: 6.2 MB, less than 85.69% of C++ online submissions for Decrypt String from Alphabet to Integer Mapping.
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Decrypt String from Alphabet to Integer Mapping.
+Memory Usage: 6.2 MB, less than 89.66% of C++ online submissions for Decrypt String from Alphabet to Integer Mapping.
 */
