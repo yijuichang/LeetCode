@@ -1,0 +1,41 @@
+//637. Average of Levels in Binary Tree
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    vector<double> averageOfLevels(TreeNode* root) {
+        vector<double> result;
+        queue<TreeNode*> q;    //create a queue to record the node in the same level
+        q.emplace(root);
+        int count;             //total number of node in the same level
+        TreeNode* node;        
+        double sum;
+        while (!q.empty()){
+            count = q.size();
+            sum = 0.0;
+            for (int i = 0; i < count; ++i){
+                node = q.front();
+                q.pop();
+                sum += node->val;
+                if (node->left) q.emplace(node->left);
+                if (node->right) q.emplace(node->right);
+            }
+            result.emplace_back(sum / count);
+        }
+        return result;
+    }
+};
+
+/*
+Runtime: 20 ms, faster than 89.23% of C++ online submissions for Average of Levels in Binary Tree.
+Memory Usage: 22.4 MB, less than 84.13% of C++ online submissions for Average of Levels in Binary Tree.
+*/
