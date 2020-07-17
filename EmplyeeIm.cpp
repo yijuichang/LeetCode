@@ -11,7 +11,7 @@ public:
 
 class Solution {
 public:
-    int getID(vector<Employee*> employees, int id){
+    int getID(vector<Employee*> &employees, int id){
          auto it = *find_if (employees.cbegin(),employees.cend(),[&id](const Employee* em){
             return em->id == id;
         });
@@ -53,7 +53,7 @@ public:
 learned: find_if, lambda expression, static member function, defererencing iterator 
 
 Runtime: 40 ms, faster than 83.22% of C++ online submissions for Employee Importance.
-Memory Usage: 23.2 MB, less than 15.10% of C++ online submissions for Employee Importance.
+Memory Usage: 11.6 MB, less than 99.50% of C++ online submissions for Employee Importance.
 
 
 */
